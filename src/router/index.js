@@ -55,6 +55,17 @@ export const constantRoutes = [
     }]
   },
 
+  {
+    path: '/upload',
+    component: Layout,
+    children: [{
+      path: 'upload',
+      name: 'Upload',
+      component: () => import('@/views/upload/index'),
+      meta: { title: 'Upload', icon: 'upload' }
+    }]
+  },
+
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]

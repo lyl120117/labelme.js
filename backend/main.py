@@ -4,6 +4,10 @@ from flask_cors import CORS
 import json
 from login import tokens
 from users import users
+import os
+
+def get_current_path():
+    return '../datasets'
 
 app = Flask(__name__)
 
@@ -57,6 +61,15 @@ def logout():
       'data': 'success'
     }
 
+@app.route('/upload', methods=['post'])
+def upload():
+    print(request.files)
+    upload_file = request.files['file']
+    upload_file.save(os.path.join(get_current_path(), upload_file.filename))
+    return {
+      'code': 20000,
+      'data': 'success'
+    }
 
 if __name__ == '__main__':
     # 监听在所有 IP 地址上
